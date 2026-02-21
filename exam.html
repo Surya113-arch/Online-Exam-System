@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam</title>
+
+    <script>
+        var timeLeft = 600; // 10 minutes = 600 seconds
+
+        function startTimer(){
+            var timer = setInterval(function(){
+
+                var minutes = Math.floor(timeLeft/60);
+                var seconds = timeLeft%60;
+
+                document.getElementById("timer").innerHTML =
+                "Time Left: " + minutes + ":" + (seconds<10?"0":"") + seconds;
+
+                timeLeft--;
+
+                if(timeLeft < 0){
+                    clearInterval(timer);
+                    alert("Time is up! Exam Submitted.");
+                    document.getElementById("examForm").submit();
+                }
+
+            },1000);
+        }
+    </script>
+</head>
+
+<body onload="startTimer()">
+
+<h2 id="timer" style="color:red"></h2>
+
+<h2 id="timer">Time Left: 02:00</h2>
+
+<h1>Online Exam</h1>
+
+<form id="examForm" method="POST" action="/submit_exam">
+
+    <p>1) Python is a ?</p>
+    <input type="radio" name="q1" value="a"> Programming Language<br>
+    <input type="radio" name="q1" value="b"> Animal<br>
+    <input type="radio" name="q1" value="c"> Car<br><br>
+
+    <p>2) HTML stands for ?</p>
+    <input type="radio" name="q2" value="a"> Hyper Trainer Marking Language<br>
+    <input type="radio" name="q2" value="b"> Hyper Text Markup Language<br>
+    <input type="radio" name="q2" value="c"> High Text Machine Language<br><br>
+
+    <input type="submit" value="Submit Exam">
+
+<script>
+
+var time = 120;   // 120 seconds = 2 minutes
+
+var timer = setInterval(function() {
+
+    var minutes = Math.floor(time / 60);
+    var seconds = time % 60;
+
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById("timer").innerHTML =
+        "Time Left: " + minutes + ":" + seconds;
+
+    time--;
+
+    if(time < 0){
+        clearInterval(timer);
+        alert("Time Up! Exam Submitted Automatically");
+        document.getElementById("examForm").submit();
+    }
+
+}, 1000);
+
+</script>
+
+</form>
+
+</body>
+</html>
